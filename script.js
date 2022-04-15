@@ -12,7 +12,6 @@ function buttonClick() {
 }
 
 const meal = (recipe) => {
-    var str = JSON.stringify(recipe);
     var recipeName = recipe.strMeal;
     var recipeCategory = recipe.strCategory;
     var instructions = recipe.strInstructions;
@@ -20,7 +19,7 @@ const meal = (recipe) => {
     var ingredients = [];
 
     for (var i = 1; i < 20; i++) {
-        ingredients.push(recipe.strIngredient1);
+        ingredients.push(recipe[`strIngredient${i}`]);
     }
 
     const recipeInnerHTML = `
