@@ -25,14 +25,20 @@ const meal = (recipe) => {
     var recipeCategory = recipe.strCategory;
     var instructions = recipe.strInstructions;
     var foodType = recipe.strArea;
+    var foodImage = recipe.strMealThumb;
     var ingredients = [];
 
+
     for (var i = 1; i < 20; i++) {
-        ingredients.push(recipe[`strIngredient${i}`]);
+        var comboString = recipe[`strIngredient${i}`] + " - " + recipe[`strMeasure${i}`]
+        ingredients.push(comboString);
     }
+
+
 
     const recipeInnerHTML = `
         <h1>${recipeName}</h1>
+        <img src="${foodImage}"></img>
         <h3> ${recipeCategory} </h3>`+
         displayIngredients(ingredients)+
         `<p> ${instructions} </p>
