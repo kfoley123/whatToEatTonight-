@@ -3,6 +3,15 @@ const recipeContainer = document.querySelector(".recipeContainer");
 
 getFoodButton.addEventListener("click", buttonClick);
 
+
+function displayIngredients(ingredientsArray){
+    var ingredientList =""
+    ingredientsArray.forEach((ingredient) => {
+        ingredientList+=`<li>${ingredient}</li>`
+    })
+    return ingredientList
+}
+
 function buttonClick() {
     fetch("https://www.themealdb.com/api/json/v1/1/random.php")
         .then((response) => response.json())
@@ -24,9 +33,9 @@ const meal = (recipe) => {
 
     const recipeInnerHTML = `
         <h1>${recipeName}</h1>
-        <h3> ${recipeCategory} </h3>
-        <p> ${ingredients} </p>
-        <p> ${instructions} </p>
+        <h3> ${recipeCategory} </h3>`+
+        displayIngredients(ingredients)+
+        `<p> ${instructions} </p>
         `;
     recipeContainer.innerHTML = recipeInnerHTML;
 };
