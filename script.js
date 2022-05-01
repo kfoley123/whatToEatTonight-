@@ -40,12 +40,12 @@ function meal(recipeJSON) {
 
     const recipeInnerHTML =
         `
-        <h1>${recipeName}</h1>
-        <h2>Type: ${foodType}</h2>
-        <img src="${foodImage}"></img>
+        <h1 class="center">${recipeName}</h1>
+        <h2 class="center">Type: ${foodType}</h2>
+        <img class="center" src="${foodImage}"></img>
         <h3> ${recipeCategory} </h3>` +
         displayIngredients(ingredients) +
-        `<p> ${instructions} </p>
+        `<p class="lead"> ${instructions} </p>
         `;
     recipeContainer.innerHTML = recipeInnerHTML;
 }
