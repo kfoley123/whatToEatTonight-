@@ -3,13 +3,15 @@ const recipeContainer = document.querySelector(".recipeContainer");
 
 getFoodButton.addEventListener("click", buttonClick);
 
-
-function displayIngredients(ingredientsArray){
-    var ingredientList =""
+function displayIngredients(ingredientsArray) {
+    var ingredientList = "";
     ingredientsArray.forEach((ingredient) => {
-        ingredientList+=`<li>${ingredient}</li>`
-    })
-    return ingredientList
+        console.log(ingredient);
+        if (ingredient !== " - ") {
+            ingredientList += `<li>${ingredient}</li>`;
+        }
+    });
+    return ingredientList;
 }
 
 function buttonClick() {
@@ -20,28 +22,30 @@ function buttonClick() {
         });
 }
 
-const meal = (recipe) => {
-    var recipeName = recipe.strMeal;
-    var recipeCategory = recipe.strCategory;
-    var instructions = recipe.strInstructions;
-    var foodType = recipe.strArea;
-    var foodImage = recipe.strMealThumb;
+function meal(recipeJSON) {
+    var recipeName = recipeJSON.strMeal;
+    var recipeCategory = recipeJSON.strCategory;
+    var instructions = recipeJSON.strInstructions;
+    var foodType = recipeJSON.strArea;
+    var foodImage = recipeJSON.strMealThumb;
     var ingredients = [];
 
-
     for (var i = 1; i < 20; i++) {
-        var comboString = recipe[`strIngredient${i}`] + " - " + recipe[`strMeasure${i}`]
+        var comboString =
+            recipeJSON[`strIngredient${i}`] +
+            " - " +
+            recipeJSON[`strMeasure${i}`];
         ingredients.push(comboString);
     }
 
-
-
-    const recipeInnerHTML = `
+    const recipeInnerHTML =
+        `
         <h1>${recipeName}</h1>
+        <h2>Type: ${foodType}</h2>
         <img src="${foodImage}"></img>
-        <h3> ${recipeCategory} </h3>`+
-        displayIngredients(ingredients)+
+        <h3> ${recipeCategory} </h3>` +
+        displayIngredients(ingredients) +
         `<p> ${instructions} </p>
         `;
     recipeContainer.innerHTML = recipeInnerHTML;
-};
+}
